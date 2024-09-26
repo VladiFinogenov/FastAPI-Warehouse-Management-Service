@@ -31,7 +31,7 @@ POSTGRES_DB = 'postgres_wms'
 ```
 
 <details>
-# Работа с базой данных
+<summary># Работа с базой данных  </summary>
 
 `Документация по подключению БД через SQLAlchemy`
 

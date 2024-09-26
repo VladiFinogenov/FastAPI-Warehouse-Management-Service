@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
 
     class Config:
-        env_file = os.path.join(os.path.dirname(__file__), '.env')
+        env_file = os.path.join(os.path.dirname(__file__), '.env.docker')
 
 
 settings = Settings()

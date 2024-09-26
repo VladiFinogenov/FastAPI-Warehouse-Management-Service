@@ -1,35 +1,50 @@
-# Сервис управления процессами на складе.
-`Приложение для управления процессами на складе. Приложение создано на фреймворке FastAPI. 
+## Сервис управления процессами на складе.
+`Приложение для управления процессами на складе. Приложение создано на фреймворке FastAPI.
 Использован асинхронный движок БД PostgreSQL под управлением ОРМ SQLAlchemy V2 и автоматизацией миграций alembic.`
 
 ## Основной стек приложения
 
-* fastapi==0.115.0
-* jinja2==3.1.4
-* SQLAlchemy==2.0.35
+* FastAPI
+* SQLAlchemy
 * PostgreSQL
+* alembic
+* pytest
 
-
-
-## Запуск приложения
-
-`
-uvicorn app.main:app --port 8000 --reload
-`
 
 ## Настройка переменных окружения
 
-`Создайте файл .env в корневой директории проекта и добавьте в него переменные окружения:`
+`Создайте файл или проверьте что он там есть .env.docker в директории c настройками config.py и добавьте в него переменные окружения:`
 
 ```
-# Замените настройки для БД на свои 
-POSTGRES_USER = 'postgres_wms'
-POSTGRES_PASSWORD = 'secure_password'
-POSTGRES_SERVER = 'localhost'
+# Замените настройки для БД на свои
+POSTGRES_USER = 'postgres_user'
+POSTGRES_PASSWORD = 'postgres_password'
+POSTGRES_SERVER = 'db' # или 'localhost' без докер сборки,
 POSTGRES_PORT = 5432
-POSTGRES_DB = 'postgres_wms'
+POSTGRES_DB = 'postgres_database'
 ```
 
+# Сборка проекта через Docker compose
+
+### Шаг 1: Запустите билд контейнеров.
+
+```bash
+docker compose up -d --build
+````
+
+### Шаг 2: Запуск миграций
+
+```bash
+docker compose exec web alembic upgrade head
+````
+
+`Дополнительно можно проверить в консоли что таблицы созданы командой:`
+
+```bash
+docker compose exec db psql --username=postgres_user --dbname=postgres_database
+
+\l
+````
 
 # Работа с базой данных
 
@@ -40,7 +55,9 @@ https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls
 ## Создание пользователя для PostgreSQL на linux
 
 <details>
+
 ### Шаг 1: Установка PostgreSQL (если еще не установлено)
+
 `Данная инструкция не предусмотрена текущей документацией`
 
 ### Шаг 2: Вход в систему PostgreSQL
@@ -66,7 +83,7 @@ CREATE USER имя_пользователя WITH PASSWORD 'ваш_пароль';
 `
 #### Пример:
 ```sql
-CREATE USER postgres_wms WITH PASSWORD 'postgres_wms';
+CREATE USER postgres_user WITH PASSWORD 'postgres_password';
 ```
 #### Ожидаемый результат:
 
@@ -81,7 +98,7 @@ CREATE DATABASE имя_БД OWNER имя_пользователя ENCODING 'UTF8
 `
 #### Пример:
 ```sql
-CREATE DATABASE postgres_wms OWNER postgres_wms ENCODING 'UTF8';
+CREATE DATABASE postgres_database OWNER postgres_user ENCODING 'UTF8';
 ```
 #### Ожидаемый результат:
 
@@ -96,7 +113,7 @@ CREATE DATABASE postgres_wms OWNER postgres_wms ENCODING 'UTF8';
 ```bash
 \q
 ````
-в терминале IDE Pycharm 
+в терминале IDE Pycharm
 ```bash
 exit
 ````
@@ -114,11 +131,15 @@ alembic init -t async app/migrations
 ````
 ### Шаг2: Изменить настройки alembic.ini
 
-* Измените опцию sqlalchemy.url в файле alembic.ini на URL подключения к БД: 
+* Измените опцию sqlalchemy.url в файле alembic.ini на URL подключения к БД:
 
 sqlalchemy.url = postgresql+asyncpg://имя_пользователя:пароль@localhost:5432/имя_БД
 
-* Изменить настройки env.py target_metadata = None на: 
+`На основе предложенного .env файла:`
+
+sqlalchemy.url = postgresql+asyncpg://postgres_user:postgres_password@db:5432/postgres_database
+
+* Изменить настройки env.py target_metadata = None на:
 
 ```
 from app.core.backend.db import Base
@@ -144,5 +165,49 @@ alembic revision --autogenerate -m "Initial migration"
 * alembic history --verbose история миграций, более подробнее можно почитать в документации.
 * alembic downgrade base даунгрейд в самое начало миграций
 * alembic upgrade head применение самой последней созданной миграции
+
+</details>
+
+## Запуск приложения локально 
+
+`
+uvicorn app.main:app --port 8000 --reload
+`
+
+## Документация Swagger
+
+http://127.0.0.1:8000/docs/ 
+
+## Запуск тестов
+
+`запустите в консоли команду`
+
+```bash
+pytest
+```
+
+## Pre-commit 
+
+<details>
+
+`установите библиотеки в виртуальное окружение`
+
+pip install pre-commit
+
+pip install isort
+
+* Установка хуков pre-commit
+
+pre-commit install
+
+** Примечания: 
+
+`Убедитесь, что версии `pre-commit` и `isort`, которые вы используете, совместимы друг с другом.`
+
+pre-commit autoupdate
+
+* Запустите `pre-commit`
+
+pre-commit run --all-files
 
 </details>

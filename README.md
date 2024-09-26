@@ -30,9 +30,9 @@ POSTGRES_PORT = 5432
 POSTGRES_DB = 'postgres_wms'
 ```
 
-<details>
-<summary># Работа с базой данных  </summary>
 
+<summary># Работа с базой данных  </summary>
+<details>
 `Документация по подключению БД через SQLAlchemy`
 
 https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls

@@ -31,14 +31,15 @@ POSTGRES_DB = 'postgres_wms'
 ```
 
 
-<summary># Работа с базой данных  </summary>
-<details>
+# Работа с базой данных
+
 `Документация по подключению БД через SQLAlchemy`
 
 https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls
 
 ## Создание пользователя для PostgreSQL на linux
 
+<details>
 ### Шаг 1: Установка PostgreSQL (если еще не установлено)
 `Данная инструкция не предусмотрена текущей документацией`
 
@@ -99,7 +100,11 @@ CREATE DATABASE postgres_wms OWNER postgres_wms ENCODING 'UTF8';
 ```bash
 exit
 ````
+</details>
+
 ## Создание миграций
+
+<details>
 
 ### Шаг 1: создание среды миграции для асинхронной поддержки
 

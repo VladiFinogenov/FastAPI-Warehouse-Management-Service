@@ -1,15 +1,13 @@
 from typing import AsyncGenerator
 
 import pytest_asyncio
-
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker, AsyncConnection
-
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy.ext.asyncio import (AsyncConnection, AsyncSession,
+                                    async_sessionmaker, create_async_engine)
 
-from app.main import app
-from app.core.backend.db_depends import get_db_async
 from app.core.backend.db import Base
-
+from app.core.backend.db_depends import get_db_async
+from app.main import app
 
 ASYNC_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 

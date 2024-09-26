@@ -1,15 +1,14 @@
 import logging
 
+from fastapi import HTTPException, status
 from fastapi.responses import JSONResponse
-from fastapi import status, HTTPException
 
 from app.data.models.order import Order, OrderItem
 from app.data.repositories.order_repository import OrderRepository
 from app.data.repositories.product_repository import ProductRepository
-from app.domain.schemes.order_scheme import OrderCreate, OrderDetail
+from app.domain.exceptions import InsufficientQuantity, ProductNotFound
 from app.domain.schemes.config import OrderStatus
-# from app.domain.schemes.order_scheme import OrderItem
-from app.domain.exceptions import ProductNotFound, InsufficientQuantity
+from app.domain.schemes.order_scheme import OrderCreate, OrderDetail
 
 logger = logging.getLogger('my_logger')
 

@@ -1,13 +1,14 @@
 import logging
 
+from fastapi import HTTPException, status
 from fastapi.responses import JSONResponse
-from fastapi import status, HTTPException
 
 from app.data.models import Product
 from app.data.repositories.product_repository import ProductRepository
 from app.domain.schemes.product_scheme import ProductCreate
 
 logger = logging.getLogger('my_logger')
+
 
 class ProductService:
     def __init__(self, product_repository: ProductRepository):

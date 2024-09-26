@@ -1,5 +1,6 @@
+from sqlalchemy import Boolean, Column, Float, Integer, String
+
 from app.core.backend.db import Base
-from sqlalchemy import Column, Integer, String, Float, Boolean
 
 
 class Product(Base):

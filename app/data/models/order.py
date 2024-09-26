@@ -1,7 +1,9 @@
-from app.core.backend.db import Base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from datetime import datetime
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, event
 from sqlalchemy.orm import relationship
+
+from app.core.backend.db import Base
 
 
 class Order(Base):

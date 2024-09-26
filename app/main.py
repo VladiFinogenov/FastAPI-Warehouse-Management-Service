@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.api.routes import products, orders
+
+from app.api.routes import orders, products
 from app.core.logging_config import setup_logging
 
 setup_logging()

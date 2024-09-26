@@ -1,16 +1,14 @@
 import logging.config
 
-
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,  # Отключаем существующие логгеры
+    'disable_existing_loggers': False,
 
     'formatters': {
         'default_formatter': {
             'format': '[%(levelname)s:%(asctime)s:%(funcName)s] %(message)s'
         },
     },
-
     'handlers': {
         'stream_handler': {
             'class': 'logging.StreamHandler',

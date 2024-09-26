@@ -30,7 +30,7 @@ POSTGRES_PORT = 5432
 POSTGRES_DB = 'postgres_wms'
 ```
 
-
+<details>
 # Работа с базой данных
 
 `Документация по подключению БД через SQLAlchemy`
@@ -139,3 +139,5 @@ alembic revision --autogenerate -m "Initial migration"
 * alembic history --verbose история миграций, более подробнее можно почитать в документации.
 * alembic downgrade base даунгрейд в самое начало миграций
 * alembic upgrade head применение самой последней созданной миграции
+
+</details>

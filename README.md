@@ -15,6 +15,7 @@
 * PostgreSQL
 * alembic
 * pytest
+* logger
 
 ## Архитектура приложения
 

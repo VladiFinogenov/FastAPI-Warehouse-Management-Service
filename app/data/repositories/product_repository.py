@@ -2,6 +2,7 @@ from typing import List
 
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.data.models import Product
 
 
@@ -24,7 +25,7 @@ class ProductRepository:
     async def get_by_id(self, product_id: int):
         result = await self.db.execute(
             select(Product)
-            .filter(Product.id == product_id))
+            .filter(Product.id == product_id, Product.is_active == True))
         return result.scalars().first()
 
     async def update(self, product: Product):

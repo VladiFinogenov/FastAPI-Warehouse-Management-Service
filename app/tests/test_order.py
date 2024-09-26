@@ -1,13 +1,10 @@
 import pytest
 
-
-from app.tests.mock_data import (
-    MOCK_PRODUCT_DATA,
-    MOCK_NOT_QUANTITY_ORDER_DATA,
-    MOCK_PRODUCT_NOT_FOUND_ORDER_DATA,
-    MOCK_CREATE_ORDER_DATA,
-    MOCK_UPDATE_STATUS_ORDER_DATA
-)
+from app.tests.mock_data import (MOCK_CREATE_ORDER_DATA,
+                                 MOCK_NOT_QUANTITY_ORDER_DATA,
+                                 MOCK_PRODUCT_DATA,
+                                 MOCK_PRODUCT_NOT_FOUND_ORDER_DATA,
+                                 MOCK_UPDATE_STATUS_ORDER_DATA)
 
 
 class Test:

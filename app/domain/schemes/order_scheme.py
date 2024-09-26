@@ -1,9 +1,8 @@
 from typing import List
-from datetime import datetime
+
 from pydantic import BaseModel, conint
 
 from app.domain.schemes.config import OrderStatus
-from app.domain.schemes.product_scheme import ProductInfo
 
 
 class OrderBase(BaseModel):
@@ -21,7 +20,7 @@ class OrderItem(BaseModel):
 
 class OrderDetail(OrderBase):
     status: str
-    products: List[ProductInfo]
+    products: List[OrderItem]
 
 class OrderCreate(BaseModel):
     items: List[OrderItem]
@@ -34,4 +33,3 @@ class OrderState(BaseModel):
 
     class Config:
         from_attributes = True
-

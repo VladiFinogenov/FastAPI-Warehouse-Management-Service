@@ -21,6 +21,22 @@
 
 ![architecture.jpg](app/architecture.jpg)
 
+## Клонирование проекта
+
+1. Клонируйте репозиторий:
+
+```bash
+git clone https://github.com/VladiFinogenov/FastAPI-Warehouse-Management-Service.git
+```
+
+2. Создайте и активируйте виртуальную среду:
+
+| Операция \ ОС |           Windows            |               Linux / macOS |
+|:--------------|:----------------------------:|----------------------------:|
+| Создание      |     python -m venv .venv     |       python3 -m venv .venv |
+| Активация     | .\.venv\Scripts\activate.bat | source ./.venv/bin/activate |
+| Деактивация   |          deactivate          |               deactivate    |
+
 ## Настройка переменных окружения
 
 `Создайте файл или проверьте что он там есть .env.docker в директории c настройками config.py и добавьте в него переменные окружения:`

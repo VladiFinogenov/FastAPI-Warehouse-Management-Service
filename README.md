@@ -37,7 +37,7 @@ git clone https://github.com/VladiFinogenov/FastAPI-Warehouse-Management-Service
 | Активация     | .\.venv\Scripts\activate.bat | source ./.venv/bin/activate |
 | Деактивация   |          deactivate          |               deactivate    |
 
-## Настройка переменных окружения
+## Настройки переменных окружения
 
 `Создайте файл или проверьте что он там есть .env.docker в директории c настройками config.py и добавьте в него переменные окружения:`
 
@@ -49,6 +49,7 @@ POSTGRES_SERVER = 'db' # или 'localhost' без докер сборки,
 POSTGRES_PORT = 5432
 POSTGRES_DB = 'postgres_database'
 ```
+`! Убедитесь, что sqlalchemy.url в файле alembic.ini соответствует параметрам переменных окружения`
 
 ## Сборка проекта через Docker compose
 
